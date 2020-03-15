@@ -1,0 +1,42 @@
+:root {
+    --bg-color: #101010;
+    --bg-color-2: #323232;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: none;
+}
+
+html,
+body {
+    overflow-x: none;
+    background-color: var(--bg-color);
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2338b2ac' fill-opacity='0.21' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.main-sec {
+    background: var(--bg-color-2);
+}
+
+.add-box-arrow {
+    position: absolute;
+    width: 300px;
+    bottom: -300px;
+    left: 0;
+}
+
+.add-box-arrow::before {
+    position: absolute;
+    top: -20px;
+    content: "";
+    left: 0;
+    width: 0;
+    height: 0;
+    border-right: solid 10px transparent;
+    border-bottom: solid 15px #38b2ac;
+    border-top: solid 10px transparent;
+
+    border-right: 10px solid transparent;
+}
