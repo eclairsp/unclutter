@@ -5,7 +5,7 @@ import {removeItem} from "../Actions";
 
 const item = {
     open: {x: 0},
-    closed: {x: 20}
+    closed: {x: 40}
 };
 
 const ListItems = ({list, remove, children}) => {
