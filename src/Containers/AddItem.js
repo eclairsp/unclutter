@@ -8,7 +8,8 @@ const AddItem = ({close, addItem}) => {
     const [emptyName, setEmptyName] = useState(false);
     const [emptyLink, setEmptyLink] = useState(false);
 
-    const handleAdd = async () => {
+    const handleAdd = async e => {
+        e.preventDefault();
         setEmptyName(false);
         setEmptyLink(false);
 
@@ -43,7 +44,7 @@ const AddItem = ({close, addItem}) => {
         setLink(event.target.value);
     };
     return (
-        <React.Fragment>
+        <form>
             <div>
                 <label className="text-xl font-thin">Name:</label>
                 <input
@@ -71,12 +72,13 @@ const AddItem = ({close, addItem}) => {
                 />
             </div>
             <button
+                type="submit"
                 onClick={handleAdd}
                 className="border-none font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 my-2"
             >
                 Add
             </button>
-        </React.Fragment>
+        </form>
     );
 };
 
