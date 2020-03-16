@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import App from "./Components/App";
 import rootReducer from "./Reducers";
 import {loadState, saveState} from "./utils/localStorage";
+import "./styles/tailwind.css";
 
 const persistedState = loadState();
 const store = createStore(
