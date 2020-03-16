@@ -2,6 +2,7 @@
     "name": "Unclutter",
     "version": "1.000",
     "description": "A clean new tab experience.",
+    "icons": {"16": "favicon.ico"},
     "chrome_url_overrides": {
         "newtab": "index.html"
     },
