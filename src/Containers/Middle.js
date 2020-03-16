@@ -46,14 +46,14 @@ const Middle = ({searchType}) => {
         >
             <input
                 className={`${
-                    empty ? "border-2 border-red-500" : "border-none"
-                } font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-800 w-auto p-2 text-xl bg-gray-900`}
+                    empty ? "border-red-500" : "border-teal-500"
+                } border-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-800 w-auto p-2 text-xl bg-gray-900`}
                 onChange={handleSearchInput}
                 type="text"
-                placeholder="Search"
+                placeholder="....."
                 aria-label="Search"
             />
-            <div className="w-64 relative">
+            <div className="w-64 relative border-2 border-teal-500">
                 <Options />
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
@@ -67,7 +67,7 @@ const Middle = ({searchType}) => {
             </div>
             <button
                 onClick={handleSearch}
-                className="border-none font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 px-6"
+                className="border-2 border-teal-500 font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 px-6 "
             >
                 Search
             </button>

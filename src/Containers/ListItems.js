@@ -1,6 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
+import {motion} from "framer-motion";
 import {removeItem} from "../Actions";
+
+const item = {
+    open: {x: 0},
+    closed: {x: 20}
+};
 
 const ListItems = ({list, remove}) => {
     const getItem = (e, index) => {
@@ -10,15 +16,27 @@ const ListItems = ({list, remove}) => {
     };
 
     return list.map((val, i) => {
+        console.log(i);
         return (
-            <div key={i} className="relative">
+            <motion.li
+                key={i}
+                initial="closed"
+                animate="open"
+                variants={item}
+                className="rounder-xl relative"
+                style={{margin: "0 10px"}}
+            >
                 <button
                     onClick={e => getItem(e, i)}
-                    className="absolute top-0 right-0"
+                    className="absolute focus:outline-none"
+                    style={{
+                        top: "-15px",
+                        right: "-15px"
+                    }}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
+                        className="h-8 w-8"
                         viewBox="0 0 512 512"
                     >
                         <path
@@ -59,15 +77,21 @@ const ListItems = ({list, remove}) => {
                         />
                     </svg>
                 </button>
-                <a key={i} href={`http://${val.link}`}>
-                    <div className="flex justify-center items-center flex-col p-2 m-3 text-teal-500 font-thin text-2xl">
-                        <div className="flex justify-center items-center h-24 w-24 bg-gray-900 rounded-full">
-                            <img src={val.img} alt={`${val.name} logo`} />
+                <div className="flex justify-center items-center flex-col text-teal-500 font-thin text-2xl">
+                    <a key={i} href={`http://${val.link}`}>
+                        <div className="flex justify-center items-center h-24 w-24 bg-gray-900 hover:bg-gray-800 border-2 border-teal-500 rounded-full">
+                            <img
+                                className="rounded-full"
+                                src={val.img}
+                                alt={`${val.name} logo`}
+                            />
                         </div>
+                    </a>
+                    <a key={i} href={`http://${val.link}`}>
                         <h1>{val.name}</h1>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            </motion.li>
         );
     });
 };

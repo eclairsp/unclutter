@@ -5,7 +5,7 @@ import {loadState} from "../utils/localStorage";
 const DownloadBtn = ({downloadLink, children}) => {
     return (
         <a
-            className="border-none font-thin bg-teal-500 focus:outline-none text-xl text-gray-900 p-2 px-6"
+            className="border-2 border-teal-500 font-thin bg-gray-900 focus:outline-none  hover:bg-gray-800 text-xl text-teal-500 p-2 px-6"
             href={downloadLink}
             download="data-unclutter.json"
         >

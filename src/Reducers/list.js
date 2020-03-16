@@ -8,7 +8,6 @@ const list = (state = [], action) => {
             };
             return [...state, item];
         case "REMOVE_ITEM":
-            console.log("jeu");
             return state.filter((val, index) => index !== action.index);
         default:
             return state;

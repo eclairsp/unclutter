@@ -8,6 +8,17 @@ const variants = {
     closed: {opacity: 0, display: "none"}
 };
 
+const list = {
+    open: {
+        opacity: 1,
+        transition: {
+            when: "beforeChildren",
+            staggerChildren: 0.3
+        }
+    },
+    closed: {opacity: 0}
+};
+
 const Bottom = () => {
     const [open, setOpen] = useState(false);
 
@@ -16,14 +27,24 @@ const Bottom = () => {
     };
     return (
         <section
-            className="flex flex-wrap justify-start  items-center"
-            style={{height: "max-content"}}
+            className="flex flex-wrap justify-start items-center"
+            style={{height: "max-content", margin: "0 -10px"}}
         >
-            <ListItems />
-            <div className="relative flex justify-center items-center flex-col p-2 text-teal-500 font-thin text-xl">
+            <motion.ul
+                initial="closed"
+                animate="open"
+                variants={list}
+                className="flex flex-wrap justify-start items-center"
+            >
+                <ListItems />
+            </motion.ul>
+            <div
+                style={{margin: "0 10px"}}
+                className="relative flex justify-center items-center flex-col p-2 text-teal-500 font-thin text-xl"
+            >
                 <div
                     onClick={() => setOpen(!open)}
-                    className="flex cursor-pointer justify-center items-center h-24 w-24 bg-gray-900 rounded-full"
+                    className="border-2 border-teal-500 flex cursor-pointer justify-center  hover:bg-gray-800 items-center h-24 w-24 bg-gray-900 rounded-full"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
