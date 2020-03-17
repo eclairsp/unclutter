@@ -16,6 +16,9 @@ module.exports = {
             },
             teal: {
                 500: "#38b2ac"
+            },
+            red: {
+                500: "#F56565"
             }
         },
         spacing: {
