@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import {connect} from "react-redux";
-import {addItem} from "../Actions";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addItem } from "../Actions";
 
-const AddItem = ({close, addItem}) => {
+const AddItem = ({ close, addItem }) => {
     const [name, setName] = useState("");
     const [link, setLink] = useState("");
     const [emptyName, setEmptyName] = useState(false);
@@ -33,7 +33,7 @@ const AddItem = ({close, addItem}) => {
         setLink("");
 
         close();
-        return addItem({name: Name, link: Link, img: imgLink});
+        return addItem({ name: Name, link: Link, img: imgLink });
     };
 
     const handleName = event => {
@@ -48,6 +48,7 @@ const AddItem = ({close, addItem}) => {
             <div>
                 <label className="text-xl font-thin">Name:</label>
                 <input
+                    autoFocus
                     value={name}
                     type="text"
                     onChange={handleName}
@@ -74,8 +75,7 @@ const AddItem = ({close, addItem}) => {
             <button
                 type="submit"
                 onClick={handleAdd}
-                className="border-none font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 my-2"
-            >
+                className="border-none font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 my-2">
                 Add
             </button>
         </form>

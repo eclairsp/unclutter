@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {connect} from "react-redux";
-import {searchFilters} from "../Actions";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { searchFilters } from "../Actions";
 import Options from "./Options";
 
-const Middle = ({searchType}) => {
+const Middle = ({ searchType }) => {
     const [query, setQuery] = useState("");
     const [empty, setEmpty] = useState(false);
 
@@ -43,8 +43,7 @@ const Middle = ({searchType}) => {
         <form>
             <div
                 className="flex justify-start items-center"
-                style={{height: "max-content"}}
-            >
+                style={{ height: "max-content" }}>
                 <input
                     className={`${
                         empty ? "border-red-500" : "border-teal-500"
@@ -52,7 +51,7 @@ const Middle = ({searchType}) => {
                     onChange={handleSearchInput}
                     value={query}
                     type="text"
-                    placeholder="....."
+                    placeholder="Search..."
                     aria-label="Search"
                 />
                 <div className="w-64 relative border-2 border-teal-500">
@@ -61,8 +60,7 @@ const Middle = ({searchType}) => {
                         <svg
                             className="fill-current h-4 w-4"
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                        >
+                            viewBox="0 0 20 20">
                             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                         </svg>
                     </div>
@@ -70,8 +68,7 @@ const Middle = ({searchType}) => {
                 <button
                     type="submit"
                     onClick={handleSearch}
-                    className="border-2 border-teal-500 font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 px-6 "
-                >
+                    className="border-2 border-teal-500 font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 px-6 ">
                     Search
                 </button>
             </div>
@@ -80,7 +77,7 @@ const Middle = ({searchType}) => {
 };
 
 const mapStateToProps = state => {
-    return {searchType: state.search};
+    return { searchType: state.search };
 };
 
 export default connect(mapStateToProps)(Middle);

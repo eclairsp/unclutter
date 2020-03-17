@@ -1,22 +1,7 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { motion } from "framer-motion";
-import AddItem from "../Containers/AddItem";
 import ListItems from "../Containers/ListItems";
-
-const variants = {
-    open: {
-        opacity: 1,
-        display: "block",
-        zIndex: 2,
-        x: 0
-    },
-    closed: {
-        opacity: 0,
-        display: "none",
-        x: 0
-    }
-};
 
 const list = {
     open: {
@@ -40,12 +25,7 @@ const item = {
     }
 };
 
-const Bottom = () => {
-    const [open, setOpen] = useState(false);
-
-    const handleClose = () => {
-        setOpen(!open);
-    };
+const Bottom = ({ switcher }) => {
     return (
         <Droppable droppableId="list" direction="horizontal">
             {(provided, snapshot) => (
@@ -63,7 +43,7 @@ const Bottom = () => {
                         <ListItems>
                             <motion.li
                                 style={{
-                                    margin: "0 10px"
+                                    marginRight: "10px"
                                 }}
                                 className="relative "
                                 initial="closed"
@@ -72,7 +52,7 @@ const Bottom = () => {
                                 key={"add"}>
                                 <div className="flex justify-center items-center flex-col text-teal-500 font-thin text-xl">
                                     <div
-                                        onClick={() => setOpen(!open)}
+                                        onClick={switcher}
                                         className="border-2 border-teal-500 flex cursor-pointer justify-center  hover:bg-gray-800 items-center h-24 w-24 bg-gray-900 rounded-full">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -109,13 +89,6 @@ const Bottom = () => {
                                     </div>{" "}
                                     <h1> Add </h1>{" "}
                                 </div>{" "}
-                                <motion.div
-                                    onClick={e => e.stopPropagation()}
-                                    animate={open ? "open" : "closed"}
-                                    variants={variants}
-                                    className="add-box-arrow absolute bg-teal-500 m-4 p-2 text-gray-900">
-                                    <AddItem close={handleClose} />{" "}
-                                </motion.div>{" "}
                             </motion.li>{" "}
                         </ListItems>{" "}
                     </motion.ul>

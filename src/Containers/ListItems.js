@@ -18,6 +18,7 @@ const ListItems = ({ list, remove, children }) => {
 
     return (
         <React.Fragment>
+            {children}
             {list.map((val, i) => {
                 return (
                     <Draggable draggableId={`drop-${i}`} index={i} key={i}>
@@ -106,7 +107,6 @@ const ListItems = ({ list, remove, children }) => {
                     </Draggable>
                 );
             })}
-            {children}
         </React.Fragment>
     );
 };

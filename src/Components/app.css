@@ -26,10 +26,9 @@ body {
 }
 
 .add-box-arrow {
-    position: absolute;
     width: 300px;
-    bottom: -300px;
-    left: 0;
+    bottom: -280px;
+    left: 50px;
 }
 
 .add-box-arrow::before {
