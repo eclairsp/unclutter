@@ -1,11 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import { DragDropContext } from "react-beautiful-dnd";
+import { reorderList } from "../Actions";
 import Menu from "./Menu";
 import Top from "./Top";
 import Middle from "../Containers/Middle";
 import Bottom from "./Bottom";
 import "./app.css";
 
-const App = () => {
+const App = ({ reorder }) => {
+    const dragEnd = result => {
+        reorder(result.source.index, result.destination.index);
+    };
     return (
         <React.Fragment>
             <Menu />
@@ -16,14 +22,22 @@ const App = () => {
                         gridTemplateRows:
                             "repeat(3, minmax(min-content, max-content))"
                     }}
-                >
+                    id="outer">
                     <Top />
                     <Middle />
-                    <Bottom />
+                    <DragDropContext onDragEnd={dragEnd}>
+                        <Bottom />
+                    </DragDropContext>
                 </section>
             </section>
         </React.Fragment>
     );
 };
 
-export default App;
+const mapDispatchToProps = dispatch => {
+    return {
+        reorder: (src, dest) => dispatch(reorderList(src, dest))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(App);

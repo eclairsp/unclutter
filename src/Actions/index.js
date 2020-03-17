@@ -8,6 +8,12 @@ export const removeItem = index => ({
     index
 });
 
+export const reorderList = (src, dest) => ({
+    type: "REORDER_LIST",
+    src,
+    dest
+});
+
 export const searchFilter = filter => ({
     type: "SEARCH_TYPE",
     filter
