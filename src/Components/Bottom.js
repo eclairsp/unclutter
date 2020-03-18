@@ -1,6 +1,6 @@
 import React from "react";
-import { Droppable } from "react-beautiful-dnd";
-import { motion } from "framer-motion";
+import {Droppable} from "react-beautiful-dnd";
+import {motion} from "framer-motion";
 import ListItems from "../Containers/ListItems";
 
 const list = {
@@ -25,7 +25,7 @@ const item = {
     }
 };
 
-const Bottom = ({ switcher }) => {
+const Bottom = ({switcher}) => {
     return (
         <Droppable droppableId="list" direction="horizontal">
             {(provided, snapshot) => (
@@ -36,10 +36,9 @@ const Bottom = ({ switcher }) => {
                         variants={list}
                         className="flex p-4 justify-start items-center h-auto"
                         style={{
-                            height: "max-content",
-                            margin: "0 -10px",
-                            overflowX: "auto"
-                        }}>
+                            height: "max-content"
+                        }}
+                    >
                         <ListItems>
                             <motion.li
                                 style={{
@@ -49,15 +48,18 @@ const Bottom = ({ switcher }) => {
                                 initial="closed"
                                 animate="open"
                                 variants={item}
-                                key={"add"}>
+                                key={"add"}
+                            >
                                 <div className="flex justify-center items-center flex-col text-teal-500 font-thin text-xl">
                                     <div
                                         onClick={switcher}
-                                        className="border-2 border-teal-500 flex cursor-pointer justify-center  hover:bg-gray-800 items-center h-24 w-24 bg-gray-900 rounded-full">
+                                        className="border-2 border-teal-500 flex cursor-pointer justify-center  hover:bg-gray-800 items-center h-24 w-24 bg-gray-900 rounded-full"
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-12 w-12"
-                                            viewBox="0 0 512 512">
+                                            viewBox="0 0 512 512"
+                                        >
                                             <title> ionicons - v5 - a </title>{" "}
                                             <line
                                                 x1="256"

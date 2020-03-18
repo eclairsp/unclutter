@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addItem } from "../Actions";
+import React, {useState} from "react";
+import {connect} from "react-redux";
+import {addItem} from "../Actions";
 
-const AddItem = ({ close, addItem }) => {
+const AddItem = ({close, addItem}) => {
     const [name, setName] = useState("");
     const [link, setLink] = useState("");
     const [emptyName, setEmptyName] = useState(false);
@@ -33,7 +33,7 @@ const AddItem = ({ close, addItem }) => {
         setLink("");
 
         close();
-        return addItem({ name: Name, link: Link, img: imgLink });
+        return addItem({name: Name, link: Link, img: imgLink});
     };
 
     const handleName = event => {
@@ -46,7 +46,59 @@ const AddItem = ({ close, addItem }) => {
     return (
         <form>
             <div>
-                <label className="text-xl font-thin">Name:</label>
+                <div className="flex justify-start items-center">
+                    <h1 className="text-5xl font-light">Add a new link</h1>
+                    <button
+                        onClick={close}
+                        className="p-1 ml-auto bg-gray-900 flex focus:outline-none rounded-full hover:bg-gray-800 font-thin items-center border-2 border-teal-500"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="512"
+                            height="512"
+                            viewBox="0 0 512 512"
+                            className="h-6 w-6"
+                        >
+                            <path
+                                d="M448,256c0-106-86-192-192-192S64,150,64,256s86,192,192,192S448,362,448,256Z"
+                                style={{
+                                    fill: "none",
+                                    stroke: "#38B2AC",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: "32px"
+                                }}
+                            />
+                            <line
+                                x1="320"
+                                y1="320"
+                                x2="192"
+                                y2="192"
+                                style={{
+                                    fill: "none",
+                                    stroke: "#38B2AC",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: "32px"
+                                }}
+                            />
+                            <line
+                                x1="192"
+                                y1="320"
+                                x2="320"
+                                y2="192"
+                                style={{
+                                    fill: "none",
+                                    stroke: "#38B2AC",
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: "32px"
+                                }}
+                            />
+                        </svg>
+                    </button>
+                </div>
+                <label className="text-2xl font-thin">Name:</label>
                 <input
                     autoFocus
                     value={name}
@@ -54,20 +106,20 @@ const AddItem = ({ close, addItem }) => {
                     onChange={handleName}
                     className={`${
                         emptyName ? "border-2 border-red-500" : "border-none"
-                    } my-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-800 w-auto p-2 text-xl bg-gray-900`}
+                    } my-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-500 w-auto p-2 text-2xl bg-gray-800`}
                     placeholder="Add a name"
                     aria-label="Add the name for new link"
                 />
             </div>
             <div>
-                <label className="text-xl font-thin">Link:</label>
+                <label className="text-2xl font-thin">Link:</label>
                 <input
                     value={link}
                     type="text"
                     onChange={handleLink}
                     className={`${
                         emptyLink ? "border-2 border-red-500" : "border-none"
-                    } my-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-800 w-auto p-2 text-xl bg-gray-900`}
+                    } my-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-500 w-auto p-2 text-2xl bg-gray-800`}
                     placeholder="https://xyz.com"
                     aria-label="Add the link for new link"
                 />
@@ -75,7 +127,8 @@ const AddItem = ({ close, addItem }) => {
             <button
                 type="submit"
                 onClick={handleAdd}
-                className="border-none font-thin text-teal-500 focus:outline-none hover:bg-gray-800 text-xl bg-gray-900 p-2 my-2">
+                className="font-thin text-2xl text-teal-500 focus:outline-none py-1 px-4 my-2 hover:bg-gray-500 bg-gray-800 border-2 border-teal-500"
+            >
                 Add
             </button>
         </form>

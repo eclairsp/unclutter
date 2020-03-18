@@ -6,12 +6,11 @@
 * {
     margin: 0;
     padding: 0;
-    overflow-x: none;
 }
 
 html,
 body {
-    overflow-x: none;
+    overflow-x: hidden;
     background-color: var(--bg-color);
     background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2338b2ac' fill-opacity='0.21' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -26,12 +25,12 @@ body {
 }
 
 .add-box-arrow {
-    width: 300px;
-    bottom: -280px;
-    left: 50px;
+    background: #1a202c40;
+    top: 0;
+    left: 0;
 }
 
-.add-box-arrow::before {
+/* .add-box-arrow::before {
     position: absolute;
     top: -20px;
     content: "";
@@ -43,7 +42,7 @@ body {
     border-top: solid 10px transparent;
 
     border-right: 10px solid transparent;
-}
+} */
 
 ::-webkit-scrollbar {
     height: 5px;

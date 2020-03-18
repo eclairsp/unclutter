@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { DragDropContext } from "react-beautiful-dnd";
-import { motion } from "framer-motion";
-import { reorderList } from "../Actions";
+import React, {useState} from "react";
+import ReactDOM from "react-dom";
+import {connect} from "react-redux";
+import {DragDropContext} from "react-beautiful-dnd";
+import {motion} from "framer-motion";
+import {reorderList} from "../Actions";
 import Bottom from "../Components/Bottom";
 import AddItem from "../Containers/AddItem";
 
@@ -19,7 +20,7 @@ const variants = {
     }
 };
 
-const BottomContainer = ({ reorder }) => {
+const BottomContainer = ({reorder}) => {
     const [open, setOpen] = useState(false);
 
     const dragEnd = result => {
@@ -34,18 +35,28 @@ const BottomContainer = ({ reorder }) => {
     };
 
     return (
-        <section id="list-portal" className="relative">
+        <section style={{overflowX: "auto"}}>
             <DragDropContext onDragEnd={dragEnd}>
                 <Bottom switcher={openSwitcher} />
-                {open ? (
-                    <motion.div
-                        initial="closed"
-                        animate="open"
-                        variants={variants}
-                        className="add-box-arrow absolute bg-teal-500 m-4 p-2 text-gray-900">
-                        <AddItem close={openSwitcher} />
-                    </motion.div>
-                ) : null}
+                {ReactDOM.createPortal(
+                    open ? (
+                        <div
+                            onClick={e => openSwitcher(e)}
+                            className="add-box-arrow flex justify-center items-center absolute h-screen w-screen z-10"
+                        >
+                            <motion.div
+                                initial="closed"
+                                animate="open"
+                                variants={variants}
+                                className="bg-gray-900 m-4 p-2 text-teal-500 w-8/12"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                <AddItem close={openSwitcher} />
+                            </motion.div>
+                        </div>
+                    ) : null,
+                    document.getElementById("modal")
+                )}
             </DragDropContext>
         </section>
     );

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {motion} from "framer-motion";
-import DownloadBtn from "../Containers/DownloadBtn";
+import ActionBtn from "../Containers/ActionBtn";
 
 const btnDownload = {
     open: {
@@ -21,7 +21,7 @@ const menu = {
 
 const menuBtn = {
     open: {borderRadius: "0"},
-    closed: {borderRadius: "50%"}
+    closed: {borderRadius: "1000px"}
 };
 
 const Menu = () => {
@@ -30,12 +30,12 @@ const Menu = () => {
         <motion.section
             animate={open ? "open" : "closed"}
             variants={menu}
-            className="z-10 flex flex-col absolute top-0 right-0 text-teal-500 h-screen p-4 bg-texture"
+            className="z-10 flex flex-col absolute top-0 right-0 text-teal-500 h-full p-4 bg-texture"
         >
             <motion.button
                 onClick={() => setOpen(!open)}
                 variants={menuBtn}
-                className={`p-2 bg-gray-900 flex focus:outline-none  hover:bg-gray-800 text-xl font-thin items-center border-2 border-teal-500 `}
+                className={`my-1 p-2 bg-gray-900 flex focus:outline-none hover:bg-gray-800 text-xl font-thin items-center border-2 border-teal-500`}
             >
                 <svg
                     className="fill-current inline w-12 h-12 m-0"
@@ -62,19 +62,32 @@ const Menu = () => {
                     </p>
                 )}
             </motion.button>
-            <section className="py-6 flex justify-start items-start">
-                {open ? (
-                    <motion.section
-                        initial="closed"
-                        animate="open"
-                        variants={btnDownload}
-                    >
-                        <DownloadBtn>Download data</DownloadBtn>
-                    </motion.section>
-                ) : (
-                    ""
-                )}
-            </section>
+
+            {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
+
+            <motion.section
+                initial="closed"
+                animate="open"
+                variants={btnDownload}
+                className="my-1 flex flex-col justify-start items-start"
+            >
+                {open && <h1 className="text-3xl font-thin">Data</h1>}
+                {open && <ActionBtn>Export</ActionBtn>}
+                {open && <ActionBtn>Import</ActionBtn>}
+            </motion.section>
+
+            {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
+
+            <motion.section
+                initial="closed"
+                animate="open"
+                variants={btnDownload}
+                className="my-1 flex flex-col justify-start items-start"
+            >
+                {open && <h1 className="text-3xl font-thin">Links</h1>}
+                {open && <ActionBtn>Horizontal</ActionBtn>}
+                {open && <ActionBtn>Grid</ActionBtn>}
+            </motion.section>
         </motion.section>
     );
 };
