@@ -37,6 +37,11 @@ export const listDirection = direction => ({
     direction
 });
 
+export const changeAddBtnPosition = position => ({
+    type: "ADD_BTN_POSITION",
+    position
+});
+
 export const searchFilters = {
     GOOGLE: "GOOGLE",
     DUCK_DUCK_GO: "DUCK_DUCK_GO",

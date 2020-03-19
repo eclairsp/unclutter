@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import {loadState} from "../utils/localStorage";
 import {importDATA} from "../Actions";
+import {checkArrays} from "../utils/checkArrayEquality";
 
-const ActionBtn = ({downloadLink, children, type, importData}) => {
+const ActionBtn = ({downloadLink, children, type, importData, closeMenu}) => {
+    const [equal, setEqual] = useState(true);
     const fileUpload = event => {
         var reader = new FileReader();
         reader.onload = onReaderLoad;
@@ -12,8 +14,19 @@ const ActionBtn = ({downloadLink, children, type, importData}) => {
 
     const onReaderLoad = event => {
         var obj = JSON.parse(event.target.result);
-        console.log(obj);
-        importData(obj);
+        let set = new Set();
+        set.add("list");
+        set.add("search");
+        set.add("listType");
+        set.add("direction");
+        const isEqual = checkArrays(set, Object.keys(obj));
+        console.log(set, Object.keys(obj));
+        if (isEqual) {
+            setEqual(true);
+            importData(obj);
+        } else {
+            setEqual(false);
+        }
     };
 
     return (
@@ -22,6 +35,7 @@ const ActionBtn = ({downloadLink, children, type, importData}) => {
                 <a
                     className="border-2 border-teal-500 font-thin bg-gray-900 focus:outline-none w-full my-1 hover:bg-gray-800 text-xl text-teal-500 p-2 px-6"
                     href={downloadLink}
+                    onClick={() => closeMenu()}
                     download={`data-unclutter-${new Date()}.json`}
                 >
                     {children}
@@ -31,7 +45,9 @@ const ActionBtn = ({downloadLink, children, type, importData}) => {
                 <React.Fragment>
                     <label
                         htmlFor="uploadFile"
-                        className="cursor-pointer border-2 border-teal-500 font-thin bg-gray-900 focus:outline-none w-full my-1 hover:bg-gray-800 text-xl text-teal-500 p-2 px-6"
+                        className={`cursor-pointer border-2 ${
+                            equal ? "border-teal-500" : "border-red-500"
+                        } font-thin bg-gray-900 focus:outline-none w-full my-1 hover:bg-gray-800 text-xl text-teal-500 p-2 px-6`}
                     >
                         {children}
                     </label>

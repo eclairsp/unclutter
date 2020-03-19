@@ -1,15 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Draggable } from "react-beautiful-dnd";
-import { motion } from "framer-motion";
-import { removeItem } from "../Actions";
+import {connect} from "react-redux";
+import {Draggable} from "react-beautiful-dnd";
+import {motion} from "framer-motion";
+import {removeItem} from "../Actions";
 
 const item = {
-    open: { x: 0 },
-    closed: { x: 40 }
+    open: {x: 0},
+    closed: {x: 40}
 };
 
-const ListItems = ({ list, remove, children }) => {
+const ListItems = ({list, remove, children, btnPosition}) => {
     const getItem = (e, index) => {
         e.stopPropagation();
         console.log(index);
@@ -18,7 +18,7 @@ const ListItems = ({ list, remove, children }) => {
 
     return (
         <React.Fragment>
-            {children}
+            {btnPosition === "FRONT" && children}
             {list.map((val, i) => {
                 return (
                     <Draggable draggableId={`drop-${i}`} index={i} key={i}>
@@ -26,26 +26,27 @@ const ListItems = ({ list, remove, children }) => {
                             <li
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
-                                {...provided.dragHandleProps}>
+                                {...provided.dragHandleProps}
+                            >
                                 <motion.div
                                     initial="closed"
                                     animate="open"
                                     variants={item}
-                                    className="relative select-none"
-                                    style={{
-                                        margin: "0 10px"
-                                    }}>
+                                    className="relative m-3 select-none"
+                                >
                                     <button
                                         onClick={e => getItem(e, i)}
                                         className="absolute focus:outline-none"
                                         style={{
                                             top: "-15px",
                                             right: "-15px"
-                                        }}>
+                                        }}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-8 w-8"
-                                            viewBox="0 0 512 512">
+                                            viewBox="0 0 512 512"
+                                        >
                                             <path
                                                 d="M448,256c0-106-86-192-192-192S64,150,64,256s86,192,192,192S448,362,448,256Z"
                                                 style={{
@@ -107,12 +108,13 @@ const ListItems = ({ list, remove, children }) => {
                     </Draggable>
                 );
             })}
+            {btnPosition === "BACK" && children}
         </React.Fragment>
     );
 };
 
 const mapStateToProps = state => {
-    return { list: state.list };
+    return {list: state.list, btnPosition: state.addBtnPosition};
 };
 
 const matchDispatchToProps = dispatch => {

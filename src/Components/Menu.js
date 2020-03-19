@@ -43,8 +43,12 @@ const Menu = () => {
     const [open, setOpen] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
-    const openSwitcher = () => {
-        console.log("hello");
+    const closeMenu = () => {
+        setOpen(!open);
+    };
+
+    const modalSwitcher = () => {
+        closeMenu();
         setOpenModal(!openModal);
     };
     return (
@@ -93,8 +97,16 @@ const Menu = () => {
                 className="my-1 flex flex-col justify-start items-start"
             >
                 {open && <h1 className="text-3xl font-thin">Data</h1>}
-                {open && <ActionBtn type="DOWNLOAD">Export</ActionBtn>}
-                {open && <ActionBtn type="UPLOAD">Import</ActionBtn>}
+                {open && (
+                    <ActionBtn closeMenu={closeMenu} type="DOWNLOAD">
+                        Export
+                    </ActionBtn>
+                )}
+                {open && (
+                    <ActionBtn closeMenu={closeMenu} type="UPLOAD">
+                        Import
+                    </ActionBtn>
+                )}
             </motion.section>
 
             {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
@@ -107,9 +119,51 @@ const Menu = () => {
             >
                 {open && <h1 className="text-3xl font-thin">Links</h1>}
                 {open && (
-                    <DirectionBtn type="HORIZONTAL">Horizontal</DirectionBtn>
+                    <DirectionBtn
+                        closeMenu={closeMenu}
+                        classifier="Direction"
+                        type="HORIZONTAL"
+                    >
+                        Horizontal
+                    </DirectionBtn>
                 )}
-                {open && <DirectionBtn type="GRID">Grid</DirectionBtn>}
+                {open && (
+                    <DirectionBtn
+                        closeMenu={closeMenu}
+                        classifier="Direction"
+                        type="GRID"
+                    >
+                        Grid
+                    </DirectionBtn>
+                )}
+            </motion.section>
+            {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
+
+            <motion.section
+                initial="closed"
+                animate="open"
+                variants={btnDownload}
+                className="my-1 flex flex-col justify-start items-start"
+            >
+                {open && <h1 className="text-3xl font-thin">Add Button</h1>}
+                {open && (
+                    <DirectionBtn
+                        closeMenu={closeMenu}
+                        classifier="AddBtn"
+                        type="FRONT"
+                    >
+                        Front
+                    </DirectionBtn>
+                )}
+                {open && (
+                    <DirectionBtn
+                        closeMenu={closeMenu}
+                        classifier="AddBtn"
+                        type="BACK"
+                    >
+                        Back
+                    </DirectionBtn>
+                )}
             </motion.section>
 
             {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
@@ -123,7 +177,7 @@ const Menu = () => {
                 {open && <h1 className="text-3xl font-thin">Clear Data</h1>}
                 {open && (
                     <button
-                        onClick={() => openSwitcher()}
+                        onClick={() => modalSwitcher()}
                         className="cursor-pointer border-2 border-teal-500 font-thin bg-gray-900 focus:outline-none w-full my-1 hover:bg-gray-800 text-xl text-teal-500 p-2 px-6"
                     >
                         Clear Data
@@ -132,17 +186,17 @@ const Menu = () => {
                 {ReactDOM.createPortal(
                     openModal ? (
                         <div
-                            onClick={e => openSwitcher(e)}
+                            onClick={e => modalSwitcher(e)}
                             className="add-box-arrow flex justify-center items-center absolute h-screen w-screen z-10"
                         >
                             <motion.div
                                 initial="closed"
                                 animate="open"
                                 variants={variants}
-                                className="bg-gray-900 m-4 p-2 text-teal-500 w-8/12"
+                                className="bg-gray-900 m-4 p-12 py-24 text-teal-500 w-8/12"
                                 onClick={e => e.stopPropagation()}
                             >
-                                <DeleteConfirm close={openSwitcher} />
+                                <DeleteConfirm close={modalSwitcher} />
                             </motion.div>
                         </div>
                     ) : null,

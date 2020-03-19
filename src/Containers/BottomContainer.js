@@ -19,8 +19,9 @@ const variants = {
     }
 };
 
-const BottomContainer = ({reorder}) => {
+const BottomContainer = ({reorder, listDirection}) => {
     const [open, setOpen] = useState(false);
+    console.log(listDirection);
 
     const dragEnd = result => {
         if (result.source === null || result.destination === null) {
@@ -37,7 +38,7 @@ const BottomContainer = ({reorder}) => {
     return (
         <section style={{overflowX: "auto"}}>
             <DragDropContext onDragEnd={dragEnd}>
-                <Bottom switcher={openSwitcher} />
+                <Bottom switcher={openSwitcher} direction={listDirection} />
                 {ReactDOM.createPortal(
                     open ? (
                         <div
@@ -48,7 +49,7 @@ const BottomContainer = ({reorder}) => {
                                 initial="closed"
                                 animate="open"
                                 variants={variants}
-                                className="bg-gray-900 m-4 p-2 text-teal-500 w-8/12"
+                                className="bg-gray-900 m-4 p-12 text-teal-500 w-8/12"
                                 onClick={e => e.stopPropagation()}
                             >
                                 <AddItem close={openSwitcher} />
@@ -68,4 +69,8 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(BottomContainer);
+const mapStateToProps = state => ({
+    listDirection: state.direction
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BottomContainer);

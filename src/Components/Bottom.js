@@ -25,7 +25,7 @@ const item = {
     }
 };
 
-const Bottom = ({switcher}) => {
+const Bottom = ({switcher, direction}) => {
     return (
         <Droppable droppableId="list" direction="horizontal">
             {(provided, snapshot) => (
@@ -34,17 +34,16 @@ const Bottom = ({switcher}) => {
                         initial="closed"
                         animate="open"
                         variants={list}
-                        className="flex p-4 justify-start items-center h-auto"
+                        className={`flex ${direction === "GRID" &&
+                            "flex-wrap"} p-4 justify-start items-center h-auto`}
                         style={{
+                            maxHeight: "50vh",
                             height: "max-content"
                         }}
                     >
                         <ListItems>
                             <motion.li
-                                style={{
-                                    marginRight: "10px"
-                                }}
-                                className="relative "
+                                className="relative m-3 select-none"
                                 initial="closed"
                                 animate="open"
                                 variants={item}
