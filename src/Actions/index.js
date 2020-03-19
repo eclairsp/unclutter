@@ -1,3 +1,12 @@
+export const deleteAllData = () => ({
+    type: "CLEAR_DATA"
+});
+
+export const importDATA = data => ({
+    type: "IMPORT_DATA",
+    data
+});
+
 export const addItem = item => ({
     type: "ADD_ITEM",
     ...item
@@ -21,6 +30,11 @@ export const searchFilter = filter => ({
 
 export const listType = bool => ({
     type: "LIST_TYPE"
+});
+
+export const listDirection = direction => ({
+    type: "LIST_DIRECTION",
+    direction
 });
 
 export const searchFilters = {

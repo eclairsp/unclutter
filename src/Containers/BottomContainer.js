@@ -10,13 +10,12 @@ import AddItem from "../Containers/AddItem";
 const variants = {
     open: {
         opacity: 1,
-        display: "block",
         zIndex: 2,
         x: 0
     },
     closed: {
         opacity: 0,
-        x: 20
+        x: 100
     }
 };
 
@@ -31,6 +30,7 @@ const BottomContainer = ({reorder}) => {
     };
 
     const openSwitcher = () => {
+        console.log("click");
         setOpen(!open);
     };
 

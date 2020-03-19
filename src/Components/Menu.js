@@ -1,6 +1,9 @@
 import React, {useState} from "react";
+import ReactDOM from "react-dom";
 import {motion} from "framer-motion";
 import ActionBtn from "../Containers/ActionBtn";
+import DirectionBtn from "../Containers/DirectionBtn";
+import DeleteConfirm from "../Containers/DeleteConfirm";
 
 const btnDownload = {
     open: {
@@ -9,8 +12,20 @@ const btnDownload = {
     },
     closed: {
         delay: 0.5,
-        x: 50,
+        x: 100,
         opacity: 0
+    }
+};
+
+const variants = {
+    open: {
+        opacity: 1,
+        zIndex: 2,
+        x: 0
+    },
+    closed: {
+        opacity: 0,
+        x: 100
     }
 };
 
@@ -26,6 +41,12 @@ const menuBtn = {
 
 const Menu = () => {
     const [open, setOpen] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+
+    const openSwitcher = () => {
+        console.log("hello");
+        setOpenModal(!openModal);
+    };
     return (
         <motion.section
             animate={open ? "open" : "closed"}
@@ -72,8 +93,8 @@ const Menu = () => {
                 className="my-1 flex flex-col justify-start items-start"
             >
                 {open && <h1 className="text-3xl font-thin">Data</h1>}
-                {open && <ActionBtn>Export</ActionBtn>}
-                {open && <ActionBtn>Import</ActionBtn>}
+                {open && <ActionBtn type="DOWNLOAD">Export</ActionBtn>}
+                {open && <ActionBtn type="UPLOAD">Import</ActionBtn>}
             </motion.section>
 
             {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
@@ -85,8 +106,48 @@ const Menu = () => {
                 className="my-1 flex flex-col justify-start items-start"
             >
                 {open && <h1 className="text-3xl font-thin">Links</h1>}
-                {open && <ActionBtn>Horizontal</ActionBtn>}
-                {open && <ActionBtn>Grid</ActionBtn>}
+                {open && (
+                    <DirectionBtn type="HORIZONTAL">Horizontal</DirectionBtn>
+                )}
+                {open && <DirectionBtn type="GRID">Grid</DirectionBtn>}
+            </motion.section>
+
+            {open && <hr className="text-teal-500 bg-teal-500 my-2"></hr>}
+
+            <motion.section
+                initial="closed"
+                animate="open"
+                variants={btnDownload}
+                className="my-1 flex flex-col justify-start items-start"
+            >
+                {open && <h1 className="text-3xl font-thin">Clear Data</h1>}
+                {open && (
+                    <button
+                        onClick={() => openSwitcher()}
+                        className="cursor-pointer border-2 border-teal-500 font-thin bg-gray-900 focus:outline-none w-full my-1 hover:bg-gray-800 text-xl text-teal-500 p-2 px-6"
+                    >
+                        Clear Data
+                    </button>
+                )}
+                {ReactDOM.createPortal(
+                    openModal ? (
+                        <div
+                            onClick={e => openSwitcher(e)}
+                            className="add-box-arrow flex justify-center items-center absolute h-screen w-screen z-10"
+                        >
+                            <motion.div
+                                initial="closed"
+                                animate="open"
+                                variants={variants}
+                                className="bg-gray-900 m-4 p-2 text-teal-500 w-8/12"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                <DeleteConfirm close={openSwitcher} />
+                            </motion.div>
+                        </div>
+                    ) : null,
+                    document.getElementById("modal")
+                )}
             </motion.section>
         </motion.section>
     );

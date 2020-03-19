@@ -8,19 +8,23 @@ const AddItem = ({close, addItem}) => {
     const [emptyName, setEmptyName] = useState(false);
     const [emptyLink, setEmptyLink] = useState(false);
 
-    const handleAdd = async e => {
-        e.preventDefault();
+    const handleAdd = async () => {
         setEmptyName(false);
         setEmptyLink(false);
 
-        if (name === "") {
+        if (name === "" && link === "") {
             setEmptyName(true);
-            return;
-        }
-
-        if (link === "") {
             setEmptyLink(true);
             return;
+        } else if (link === "") {
+            setEmptyLink(true);
+            return;
+        } else if (name === "") {
+            setEmptyName(true);
+            return;
+        } else {
+            setEmptyLink(false);
+            setEmptyName(false);
         }
 
         const response = await fetch(`https://api.faviconkit.com/${link}/144`);
@@ -37,14 +41,23 @@ const AddItem = ({close, addItem}) => {
     };
 
     const handleName = event => {
+        setEmptyName(false);
         setName(event.target.value);
     };
 
     const handleLink = event => {
+        setEmptyLink(false);
         setLink(event.target.value);
     };
+
+    const handleEnter = event => {
+        if (event.key === "Enter") {
+            handleAdd();
+        }
+    };
+
     return (
-        <form>
+        <React.Fragment>
             <div>
                 <div className="flex justify-start items-center">
                     <h1 className="text-5xl font-light">Add a new link</h1>
@@ -104,6 +117,7 @@ const AddItem = ({close, addItem}) => {
                     value={name}
                     type="text"
                     onChange={handleName}
+                    onKeyPress={handleEnter}
                     className={`${
                         emptyName ? "border-2 border-red-500" : "border-none"
                     } my-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-500 w-auto p-2 text-2xl bg-gray-800`}
@@ -117,6 +131,7 @@ const AddItem = ({close, addItem}) => {
                     value={link}
                     type="text"
                     onChange={handleLink}
+                    onKeyPress={handleEnter}
                     className={`${
                         emptyLink ? "border-2 border-red-500" : "border-none"
                     } my-2 font-thin w-full text-teal-500 focus:outline-none hover:bg-gray-500 w-auto p-2 text-2xl bg-gray-800`}
@@ -125,13 +140,13 @@ const AddItem = ({close, addItem}) => {
                 />
             </div>
             <button
-                type="submit"
+                type="button"
                 onClick={handleAdd}
                 className="font-thin text-2xl text-teal-500 focus:outline-none py-1 px-4 my-2 hover:bg-gray-500 bg-gray-800 border-2 border-teal-500"
             >
                 Add
             </button>
-        </form>
+        </React.Fragment>
     );
 };
 
