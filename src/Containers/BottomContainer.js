@@ -21,7 +21,6 @@ const variants = {
 
 const BottomContainer = ({reorder, listDirection}) => {
     const [open, setOpen] = useState(false);
-    console.log(listDirection);
 
     const dragEnd = result => {
         if (result.source === null || result.destination === null) {
@@ -31,7 +30,6 @@ const BottomContainer = ({reorder, listDirection}) => {
     };
 
     const openSwitcher = () => {
-        console.log("click");
         setOpen(!open);
     };
 

@@ -88,14 +88,25 @@ const ListItems = ({list, remove, children, btnPosition}) => {
                                     <div className="flex justify-center items-center flex-col text-teal-500 font-thin text-2xl">
                                         <a href={`http://${val.link}`}>
                                             <div className="flex justify-center items-center h-24 w-24 bg-gray-900 hover:bg-gray-800 border-2 border-teal-500 rounded-full">
-                                                <img
-                                                    style={{
-                                                        height: "64px",
-                                                        width: "64px"
-                                                    }}
-                                                    src={val.img}
-                                                    alt={`${val.name} logo`}
-                                                />
+                                                {val.img === false ? (
+                                                    <h1
+                                                        className="text-5xl font-semibold"
+                                                        style={{
+                                                            marginTop: "-5px"
+                                                        }}
+                                                    >
+                                                        {val.name[0]}
+                                                    </h1>
+                                                ) : (
+                                                    <img
+                                                        style={{
+                                                            height: "64px",
+                                                            width: "64px"
+                                                        }}
+                                                        src={val.img}
+                                                        alt={`${val.name} logo`}
+                                                    />
+                                                )}
                                             </div>
                                         </a>
                                         <a href={`http://${val.link}`}>

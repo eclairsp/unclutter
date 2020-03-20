@@ -19,6 +19,7 @@ const ActionBtn = ({downloadLink, children, type, importData, closeMenu}) => {
         set.add("search");
         set.add("listType");
         set.add("direction");
+        set.add("addBtnPosition");
         const isEqual = checkArrays(set, Object.keys(obj));
         console.log(set, Object.keys(obj));
         if (isEqual) {

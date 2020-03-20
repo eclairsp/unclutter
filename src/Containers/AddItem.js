@@ -27,17 +27,36 @@ const AddItem = ({close, addItem}) => {
             setEmptyName(false);
         }
 
-        const response = await fetch(`https://api.faviconkit.com/${link}/144`);
+        try {
+            const response = await fetch(
+                `https://api.faviconkit.com/${link}/144`,
+                {
+                    headers: {
+                        "Access-Control-Allow-Origin": "no-cors"
+                    }
+                }
+            );
 
-        const Name = name;
-        const Link = link;
-        const imgLink = response.url;
+            const Name = name;
+            const Link = link;
+            const imgLink = response.url;
 
-        setName("");
-        setLink("");
+            setName("");
+            setLink("");
 
-        close();
-        return addItem({name: Name, link: Link, img: imgLink});
+            close();
+            return addItem({name: Name, link: Link, img: imgLink});
+        } catch (error) {
+            const Name = name;
+            const Link = link;
+            const imgLink = false;
+
+            setName("");
+            setLink("");
+
+            close();
+            return addItem({name: Name, link: Link, img: imgLink});
+        }
     };
 
     const handleName = event => {
