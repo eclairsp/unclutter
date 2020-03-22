@@ -10,17 +10,21 @@
         "react": "^16.13.0",
         "react-beautiful-dnd": "^10.0.0",
         "react-dom": "^16.13.0",
+        "react-image": "^2.4.0",
         "react-redux": "^7.2.0",
         "react-scripts": "3.4.0",
-        "redux": "^4.0.5"
+        "redux": "^4.0.5",
+        "url-parse": "^1.4.7"
     },
     "scripts": {
+        "analyze": "source-map-explorer 'build/static/js/*.js'",
         "start": "npm run watch:css && react-scripts start",
         "build": "npm run build:css && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "build:css": "postcss src/styles/index.css -o src/styles/tailwind.css",
-        "watch:css": "postcss src/styles/index.css -o src/styles/tailwind.css"
+        "watch:css": "postcss src/styles/index.css -o src/styles/tailwind.css",
+        "gzipper": "gzipper --verbose build"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -41,6 +45,7 @@
         "@fullhuman/postcss-purgecss": "^2.1.0",
         "autoprefixer": "^9.7.4",
         "postcss-cli": "^7.1.0",
+        "source-map-explorer": "^2.4.0",
         "tailwindcss": "^1.2.0"
     }
 }

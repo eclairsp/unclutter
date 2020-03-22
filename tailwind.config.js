@@ -52,15 +52,10 @@ module.exports = {
         borderWidth: {
             default: "1px",
             "0": "0",
-            "2": "2px",
-            "4": "4px",
-            "8": "8px"
+            "2": "2px"
         },
         cursor: {
-            auto: "auto",
-            default: "default",
-            pointer: "pointer",
-            "not-allowed": "not-allowed"
+            pointer: "pointer"
         },
         fill: {
             current: "currentColor"
@@ -84,45 +79,15 @@ module.exports = {
             "6xl": "4rem"
         },
         fontWeight: {
-            hairline: "100",
             thin: "200",
             light: "300",
-            normal: "400",
-            medium: "500",
-            semibold: "600",
-            bold: "700",
-            extrabold: "800",
-            black: "900"
+            semibold: "600"
         },
         margin: (theme, {negative}) => ({
             auto: "auto",
             ...theme("spacing"),
             ...negative(theme("spacing"))
         }),
-        maxHeight: {
-            full: "100%",
-            screen: "100vh"
-        },
-        maxWidth: (theme, {breakpoints}) => ({
-            none: "none",
-            xs: "20rem",
-            sm: "24rem",
-            md: "28rem",
-            lg: "32rem",
-            xl: "36rem",
-            "2xl": "42rem",
-            "3xl": "48rem",
-            "4xl": "56rem",
-            "5xl": "64rem",
-            "6xl": "72rem",
-            full: "100%",
-            ...breakpoints(theme("screens"))
-        }),
-        minHeight: {
-            "0": "0",
-            full: "100%",
-            screen: "100vh"
-        },
         minWidth: {
             "0": "0",
             full: "100%"
@@ -181,33 +146,7 @@ module.exports = {
             full: "100%",
             screen: "100vw"
         }),
-        zIndex: {
-            auto: "auto",
-            "0": "0",
-            "10": "10",
-            "20": "20",
-            "30": "30",
-            "40": "40",
-            "50": "50"
-        },
-        gap: theme => theme("spacing"),
-        gridTemplateColumns: {
-            none: "none",
-            "1": "repeat(1, minmax(0, 1fr))",
-            "2": "repeat(2, minmax(0, 1fr))",
-            "3": "repeat(3, minmax(0, 1fr))",
-            "4": "repeat(4, minmax(0, 1fr))",
-            "5": "repeat(5, minmax(0, 1fr))"
-        },
-        gridTemplateRows: {
-            none: "none",
-            "1": "repeat(1, minmax(0, 1fr))",
-            "2": "repeat(2, minmax(0, 1fr))",
-            "3": "repeat(3, minmax(0, 1fr))",
-            "4": "repeat(4, minmax(0, 1fr))",
-            "5": "repeat(5, minmax(0, 1fr))",
-            "6": "repeat(6, minmax(0, 1fr))"
-        }
+        gap: theme => theme("spacing")
     },
     variants: {
         accessibility: ["responsive", "focus"],

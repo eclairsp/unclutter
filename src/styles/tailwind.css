@@ -990,14 +990,6 @@ video {
   border-width: 2px;
 }
 
-.border-4 {
-  border-width: 4px;
-}
-
-.border-8 {
-  border-width: 8px;
-}
-
 .border {
   border-width: 1px;
 }
@@ -1034,38 +1026,6 @@ video {
   border-left-width: 2px;
 }
 
-.border-t-4 {
-  border-top-width: 4px;
-}
-
-.border-r-4 {
-  border-right-width: 4px;
-}
-
-.border-b-4 {
-  border-bottom-width: 4px;
-}
-
-.border-l-4 {
-  border-left-width: 4px;
-}
-
-.border-t-8 {
-  border-top-width: 8px;
-}
-
-.border-r-8 {
-  border-right-width: 8px;
-}
-
-.border-b-8 {
-  border-bottom-width: 8px;
-}
-
-.border-l-8 {
-  border-left-width: 8px;
-}
-
 .border-t {
   border-top-width: 1px;
 }
@@ -1090,20 +1050,8 @@ video {
   box-sizing: content-box;
 }
 
-.cursor-auto {
-  cursor: auto;
-}
-
-.cursor-default {
-  cursor: default;
-}
-
 .cursor-pointer {
   cursor: pointer;
-}
-
-.cursor-not-allowed {
-  cursor: not-allowed;
 }
 
 .block {
@@ -1416,10 +1364,6 @@ video {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.font-hairline {
-  font-weight: 100;
-}
-
 .font-thin {
   font-weight: 200;
 }
@@ -1428,32 +1372,8 @@ video {
   font-weight: 300;
 }
 
-.font-normal {
-  font-weight: 400;
-}
-
-.font-medium {
-  font-weight: 500;
-}
-
 .font-semibold {
   font-weight: 600;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.font-extrabold {
-  font-weight: 800;
-}
-
-.font-black {
-  font-weight: 900;
-}
-
-.hover\:font-hairline:hover {
-  font-weight: 100;
 }
 
 .hover\:font-thin:hover {
@@ -1464,32 +1384,8 @@ video {
   font-weight: 300;
 }
 
-.hover\:font-normal:hover {
-  font-weight: 400;
-}
-
-.hover\:font-medium:hover {
-  font-weight: 500;
-}
-
 .hover\:font-semibold:hover {
   font-weight: 600;
-}
-
-.hover\:font-bold:hover {
-  font-weight: 700;
-}
-
-.hover\:font-extrabold:hover {
-  font-weight: 800;
-}
-
-.hover\:font-black:hover {
-  font-weight: 900;
-}
-
-.focus\:font-hairline:focus {
-  font-weight: 100;
 }
 
 .focus\:font-thin:focus {
@@ -1500,28 +1396,8 @@ video {
   font-weight: 300;
 }
 
-.focus\:font-normal:focus {
-  font-weight: 400;
-}
-
-.focus\:font-medium:focus {
-  font-weight: 500;
-}
-
 .focus\:font-semibold:focus {
   font-weight: 600;
-}
-
-.focus\:font-bold:focus {
-  font-weight: 700;
-}
-
-.focus\:font-extrabold:focus {
-  font-weight: 800;
-}
-
-.focus\:font-black:focus {
-  font-weight: 900;
 }
 
 .h-0 {
@@ -4627,6 +4503,34 @@ video {
 
 .grid-cols-5 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-7 {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-cols-8 {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-cols-9 {
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-cols-10 {
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.grid-cols-11 {
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 .grid-cols-none {

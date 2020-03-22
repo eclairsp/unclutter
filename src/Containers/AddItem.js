@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import {addItem} from "../Actions";
+import URLParse from "url-parse";
 
 const AddItem = ({close, addItem}) => {
     const [name, setName] = useState("");
@@ -28,18 +29,20 @@ const AddItem = ({close, addItem}) => {
         }
 
         try {
+            let url = new URLParse(link, {});
+            console.log(url);
+            let Link;
+            let Name = name;
+            if (url.protocol === "") {
+                Link = link;
+            } else {
+                Link = url.hostname;
+            }
             const response = await fetch(
-                `https://api.faviconkit.com/${link}/144`,
-                {
-                    headers: {
-                        "Access-Control-Allow-Origin": "no-cors"
-                    }
-                }
+                `https://api.faviconkit.com/${Link}/144`
             );
 
-            const Name = name;
-            const Link = link;
-            const imgLink = response.url;
+            let imgLink = response.url;
 
             setName("");
             setLink("");
@@ -47,9 +50,16 @@ const AddItem = ({close, addItem}) => {
             close();
             return addItem({name: Name, link: Link, img: imgLink});
         } catch (error) {
-            const Name = name;
-            const Link = link;
-            const imgLink = false;
+            let url = new URLParse(link, {});
+            console.log(url);
+            let Link;
+            let Name = name;
+            if (url.protocol === "") {
+                Link = link;
+            } else {
+                Link = url.hostname;
+            }
+            let imgLink = false;
 
             setName("");
             setLink("");

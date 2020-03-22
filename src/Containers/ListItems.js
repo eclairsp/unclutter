@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Draggable} from "react-beautiful-dnd";
 import {motion} from "framer-motion";
+import Img from "react-image";
 import {removeItem} from "../Actions";
 
 const item = {
@@ -12,7 +13,6 @@ const item = {
 const ListItems = ({list, remove, children, btnPosition}) => {
     const getItem = (e, index) => {
         e.stopPropagation();
-        console.log(index);
         remove(index);
     };
 
@@ -98,12 +98,34 @@ const ListItems = ({list, remove, children, btnPosition}) => {
                                                         {val.name[0]}
                                                     </h1>
                                                 ) : (
-                                                    <img
+                                                    <Img
                                                         style={{
                                                             height: "64px",
                                                             width: "64px"
                                                         }}
-                                                        src={val.img}
+                                                        src={[val.img]}
+                                                        unloader={
+                                                            <h1
+                                                                className="text-5xl font-semibold"
+                                                                style={{
+                                                                    marginTop:
+                                                                        "-5px"
+                                                                }}
+                                                            >
+                                                                {val.name[0]}
+                                                            </h1>
+                                                        }
+                                                        loader={
+                                                            <h1
+                                                                className="text-5xl font-semibold"
+                                                                style={{
+                                                                    marginTop:
+                                                                        "-5px"
+                                                                }}
+                                                            >
+                                                                {val.name[0]}
+                                                            </h1>
+                                                        }
                                                         alt={`${val.name} logo`}
                                                     />
                                                 )}
