@@ -41,10 +41,12 @@ const menuBtn = {
 
 const Menu = () => {
     const [open, setOpen] = useState(false);
+    const [hovered, setHover] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
     const closeMenu = () => {
         setOpen(!open);
+        setHover(false);
     };
 
     const modalSwitcher = () => {
@@ -55,6 +57,12 @@ const Menu = () => {
         <motion.section
             animate={open ? "open" : "closed"}
             variants={menu}
+            onHoverStart={() => {
+                setHover(true) && setOpen(true);
+            }}
+            onHoverEnd={() => {
+                hovered && setOpen(false) && setHover(false);
+            }}
             className="z-10 flex flex-col absolute top-0 right-0 text-teal-500 h-full p-4 bg-texture"
         >
             <motion.button

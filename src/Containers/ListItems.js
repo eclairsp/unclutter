@@ -132,7 +132,17 @@ const ListItems = ({list, remove, children, btnPosition}) => {
                                             </div>
                                         </a>
                                         <a href={`http://${val.link}`}>
-                                            <h1>{val.name}</h1>
+                                            <h1
+                                                title={val.name}
+                                                style={{
+                                                    maxWidth: "100px",
+                                                    whiteSpace: "nowrap",
+                                                    overflow: "hidden",
+                                                    textOverflow: "ellipsis"
+                                                }}
+                                            >
+                                                {val.name}
+                                            </h1>
                                         </a>
                                     </div>
                                 </motion.div>
