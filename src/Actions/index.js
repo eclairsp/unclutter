@@ -1,49 +1,50 @@
 export const deleteAllData = () => ({
-    type: "CLEAR_DATA"
+    type: "CLEAR_DATA",
 });
 
-export const importDATA = data => ({
+export const importDATA = (data) => ({
     type: "IMPORT_DATA",
-    data
+    data,
 });
 
-export const addItem = item => ({
+export const addItem = (item) => ({
     type: "ADD_ITEM",
-    ...item
+    ...item,
 });
 
-export const removeItem = index => ({
+export const removeItem = (index) => ({
     type: "REMOVE_ITEM",
-    index
+    index,
 });
 
 export const reorderList = (src, dest) => ({
     type: "REORDER_LIST",
     src,
-    dest
+    dest,
 });
 
-export const searchFilter = filter => ({
+export const searchFilter = (filter) => ({
     type: "SEARCH_TYPE",
-    filter
+    filter,
 });
 
-export const listType = bool => ({
-    type: "LIST_TYPE"
+export const listType = (bool) => ({
+    type: "LIST_TYPE",
 });
 
-export const listDirection = direction => ({
+export const listDirection = (direction) => ({
     type: "LIST_DIRECTION",
-    direction
+    direction,
 });
 
-export const changeAddBtnPosition = position => ({
+export const changeAddBtnPosition = (position) => ({
     type: "ADD_BTN_POSITION",
-    position
+    position,
 });
 
 export const searchFilters = {
     GOOGLE: "GOOGLE",
+    YOUTUBE: "YOUTUBE",
     DUCK_DUCK_GO: "DUCK_DUCK_GO",
-    BING: "BING"
+    BING: "BING",
 };

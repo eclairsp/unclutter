@@ -7,11 +7,11 @@ const Middle = ({searchType}) => {
     const [query, setQuery] = useState("");
     const [empty, setEmpty] = useState(false);
 
-    const redirectToSearch = url => {
+    const redirectToSearch = (url) => {
         window.location.href = `${url}${query}`;
     };
 
-    const handleSearch = e => {
+    const handleSearch = (e) => {
         e.preventDefault();
         if (query === "") {
             setEmpty(true);
@@ -24,6 +24,11 @@ const Middle = ({searchType}) => {
             case searchFilters.GOOGLE:
                 redirectToSearch("https://www.google.com/search?q=");
                 return;
+            case searchFilters.YOUTUBE:
+                redirectToSearch(
+                    "https://www.youtube.com/results?search_query="
+                );
+                return;
             case searchFilters.DUCK_DUCK_GO:
                 redirectToSearch("https://duckduckgo.com/?q=");
                 return;
@@ -35,21 +40,30 @@ const Middle = ({searchType}) => {
         }
     };
 
-    const handleSearchInput = event => {
+    const handleSearchInput = (event) => {
         setQuery(event.target.value);
     };
 
     const dataForOptions = () => {
         let data = [];
-        Object.keys(searchFilters).forEach(key => {
+        Object.keys(searchFilters).forEach((key) => {
             switch (searchFilters[key]) {
                 case "GOOGLE":
                     data = [
                         ...data,
                         {
                             name: "Google",
-                            val: searchFilters[key]
-                        }
+                            val: searchFilters[key],
+                        },
+                    ];
+                    return;
+                case "YOUTUBE":
+                    data = [
+                        ...data,
+                        {
+                            name: "Youtube",
+                            val: searchFilters[key],
+                        },
                     ];
                     return;
                 case "DUCK_DUCK_GO":
@@ -57,8 +71,8 @@ const Middle = ({searchType}) => {
                         ...data,
                         {
                             name: "Duck Duck Go",
-                            val: searchFilters[key]
-                        }
+                            val: searchFilters[key],
+                        },
                     ];
                     return;
                 case "BING":
@@ -66,8 +80,8 @@ const Middle = ({searchType}) => {
                         ...data,
                         {
                             name: "Bing",
-                            val: searchFilters[key]
-                        }
+                            val: searchFilters[key],
+                        },
                     ];
                     return;
                 default:
@@ -108,7 +122,7 @@ const Middle = ({searchType}) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {searchType: state.search};
 };
 
