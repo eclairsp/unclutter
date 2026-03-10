@@ -15,7 +15,7 @@
         "react-scripts": "3.4.0",
         "react-snap": "^1.23.0",
         "redux": "^4.0.5",
-        "url-parse": "^1.4.7"
+        "url-parse": "^1.5.10"
     },
     "scripts": {
         "analyze": "source-map-explorer 'build/static/js/*.js'",
